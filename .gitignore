@@ -1,0 +1,37 @@
+# Nextflow
+.nextflow/
+work/
+.nextflow.log*
+timeline.html
+trace.txt
+report.html
+dag.html
+
+# System
+.DS_Store
+*.tmp
+*.log
+
+# Downloaded raw data
+data/reads/*.fastq
+data/reads/*.fq
+data/reads/*.fastq.gz
+data/reads/*.fq.gz
+data/reads/*.tar.gz
+data/reads/tmp_extract/
+
+# Index/intermediate files
+data/reference/*.amb
+data/reference/*.ann
+data/reference/*.bwt
+data/reference/*.pac
+data/reference/*.sa
+data/reference/*.fai
+
+# Alignment intermediates
+results/**/*.bam
+results/**/*.bai
+results/**/*.sam
+
+# FastQC compressed output
+results/**/*_fastqc.zip

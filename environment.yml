@@ -1,0 +1,15 @@
+name: nextflow-variant-calling-pipeline
+
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+
+dependencies:
+  - nextflow
+  - openjdk
+  - bwa
+  - samtools
+  - bcftools
+  - fastqc
+  - python
