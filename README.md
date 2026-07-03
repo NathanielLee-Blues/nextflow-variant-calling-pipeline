@@ -96,7 +96,7 @@ Run the pipeline:
 nextflow run main.nf
 ~~~
 
-## Generated outputs
+## Outputs
 
 | Output | Description |
 |---|---|
@@ -156,6 +156,3 @@ The results should be interpreted as candidate calls produced by this pipeline, 
 
 For more detail, see [`docs/INTERPRETATION.md`](docs/INTERPRETATION.md).
 
-## Status
-
-Version 1 complete.
