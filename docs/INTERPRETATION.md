@@ -1,32 +1,25 @@
 # Interpretation
 
-## Summary of findings
+## Analytical result
 
-This project implemented a small bacterial variant-calling workflow as a Nextflow pipeline.
+The Nextflow pipeline produced a filtered set of 407 candidate variants, comprising 353 SNPs and 54 indel or complex records. These counts are consistent with the manual command-line workflow because the two repositories use the same reference, reads, variant-calling logic and filtering strategy.
 
-The pipeline processed one paired-end E. coli sequencing sample and produced a filtered VCF containing 407 candidate variants.
+The agreement is useful as an implementation check. It indicates that moving the analysis into Nextflow did not alter the final variant summary. It does not establish that the calls are biologically correct.
 
-The filtered variant set contained:
+## What Nextflow changes
 
-- 353 SNPs
-- 54 indel or complex variants
+Nextflow represents each analytical stage as a process with declared inputs and outputs. This reduces reliance on manually running commands in the correct order and permits completed work to be resumed from cached results. The trace, timeline and report also make resource use and process execution easier to inspect.
 
-## Interpretation of the pipeline output
+These are improvements in reproducibility and workflow management. They do not compensate for unsuitable biological assumptions or weak input data.
 
-The filtered VCF represents candidate genetic differences between the sequencing reads and the selected E. coli reference genome.
+## Meaning of the VCF
 
-The SNP calls represent single-base substitutions. The indel or complex calls represent insertions, deletions, or more complex local differences.
+The filtered records are candidate differences between the sequencing sample and the REL606 reference under the current caller and filters. Without a truth set, replicate or orthogonal validation, sensitivity and precision remain unknown.
 
-Because the project uses real sequencing data rather than simulated reads, the pipeline does not compare the calls against a known truth set. The results should therefore be interpreted as candidate variants produced by this workflow and filtering strategy.
+## Relationship to the manual workflow
 
-## Workflow interpretation
+The manual repository is useful for understanding each command and intermediate file. The Nextflow version is useful for formalising dependencies and scaling the same logic to samplesheet-driven execution. Maintaining both versions makes the distinction between analytical method and workflow engine explicit.
 
-The main value of this project is pipeline reproducibility.
+## Conclusion
 
-The analysis is controlled by a samplesheet, uses defined processes, and writes outputs into structured folders. This makes the workflow easier to rerun, inspect, and adapt than a collection of manual shell commands.
-
-## Overall conclusion
-
-This project demonstrates how a real-data bacterial variant-calling workflow can be automated using Nextflow.
-
-It provides evidence of workflow engineering skills, command-line genomics experience, and understanding of common sequencing file formats including FASTQ, FASTA, BAM, and VCF.
+The pipeline successfully reproduces the manual result in a workflow-managed form. Its principal contribution is reliable orchestration and traceability. Biological interpretation remains constrained by the same assumptions and limitations as the underlying variant-calling method.

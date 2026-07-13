@@ -1,38 +1,32 @@
-# Project plan
+# Project plan and scope
 
-## Project title
+## Objective
 
-Nextflow Variant Calling Pipeline
+Translate the manual bacterial variant-calling workflow into a samplesheet-driven Nextflow pipeline without changing its core analytical logic.
 
-## Purpose
+## Questions
 
-This project demonstrates how a bacterial variant-calling workflow can be automated using Nextflow.
+1. Can the manual stages be represented as independent processes with explicit inputs and outputs?
+2. Does the workflow-managed implementation reproduce the manual variant summary?
+3. Can execution reports and cached processes improve traceability and rerunning?
+4. Which additions would be required before the pipeline could be considered production-ready?
 
-It is intended as a portfolio project showing workflow engineering, reproducibility, samplesheet-driven execution, and practical genomics pipeline development.
+## Deliverables
 
-## Workflow stages
+- `main.nf` and `nextflow.config`;
+- a samplesheet-based input structure;
+- automated quality control, alignment, calling, filtering and summarisation;
+- pipeline trace, timeline, report and DAG outputs;
+- methods, interpretation and limitations documents.
 
-1. Prepare a reference genome and paired-end FASTQ files.
-2. Read sample information from a samplesheet.
-3. Run FastQC on paired-end reads.
-4. Align reads to the reference genome using BWA.
-5. Sort and index alignments using SAMtools.
-6. Call variants using BCFtools.
-7. Filter variants using quality, depth, and mapping-quality criteria.
-8. Summarise filtered variants using Python.
-9. Generate organised output directories.
+## Design choices
 
-## Planned outputs
+The pipeline retains familiar command-line tools so that differences between the manual and managed versions arise from orchestration rather than from a new variant-calling method. Final counts are compared with the manual workflow as an implementation check.
 
-- FastQC reports
-- alignment summary
-- raw VCF
-- filtered VCF
-- variant summary CSV
-- variant type count table
-- Nextflow execution reports
-- README and methods documentation
+## Boundaries
 
-## Portfolio value
+The project does not benchmark accuracy, support every organism or provide containerised production deployment. It is a clear transition from sequential shell execution to an explicit workflow graph.
 
-This project demonstrates the ability to convert a manual bioinformatics workflow into a reproducible pipeline. It shows practical use of Nextflow, command-line genomics tools, structured inputs, organised outputs, and reproducible analysis design.
+## Next extensions
+
+Priority improvements are a small automated test dataset, container profiles, MultiQC aggregation, parameter validation and testing across multiple samples.
